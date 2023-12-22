@@ -44,15 +44,17 @@ const Inst_select:Ref<string[]> = ref([])
 async function submit() {
   loading.value = true
   // setTimeout(() => (loading.value = false), 2000)
-  
-  await axios.get('search', {
-    params: {
+  if(Inst_select.value.length == 0 || !District_select.value || !City_select.value || !Province_select.value || !Type_select.value){
+    store.filterfail_snackbar = true
+    loading.value = false
+    return
+  }
+  await axios.post('bandinfos', {
       type : Type_select.value,
       province : Province_select.value,
       city : City_select.value,
       district : District_select.value,
       insts : Inst_select.value
-    }
   })
     .then(function (response: any) {
       store.infos = response.data
@@ -75,5 +77,12 @@ watch(Province_select, async () => {
 })
 watch(City_select, async () => {
   District_select.value = ""
+})
+watch(Type_select, async () => {
+  if(Type_select.value=="线上"){
+    Province_select.value = ""
+    City_select.value = ""
+    District_select.value = ""
+  }
 })
 </script>

@@ -16,7 +16,8 @@ export const useInfosStore = defineStore('infos', () => {
     const Insts = ref(['电吉他','电贝斯','键盘', '架子鼓','木吉他'])
     const success_snackbar = ref()
     const fail_snackbar = ref()
+    const filterfail_snackbar = ref()
 
-    return {infos,Provinces,Citys,Districts,Insts,success_snackbar,fail_snackbar}
+    return {infos,Provinces,Citys,Districts,Insts,success_snackbar,fail_snackbar,filterfail_snackbar}
 
 })
