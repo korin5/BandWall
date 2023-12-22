@@ -16,6 +16,17 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/upload',
+    component: () => import('@/layouts/default/Default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Upload',
+        component: () => import('@/views/Upload.vue'),
+      },
+    ],
+  }
 ]
 
 const router = createRouter({

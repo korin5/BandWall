@@ -17,7 +17,7 @@
     <v-chip variant="outlined" v-for="inst in Insts" :key="inst" :value="inst">{{ inst }}</v-chip>
   </v-chip-group>
 
-  <v-btn class="mt-4 bg-surface-variant" block rounded="xl" @click="submit" :loading="loading">查找</v-btn>
+  <v-btn class="mt-4 bg-teal" block rounded="xl" @click="submit" :loading="loading">查找</v-btn>
 </template>
 
 

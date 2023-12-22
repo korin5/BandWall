@@ -3,14 +3,17 @@
     <Filter />
   </v-navigation-drawer>
   <v-sheet class="d-flex pa-4">
-    <v-btn class="mr-4 bg-surface-variant" icon="mdi-filter" @click.stop="drawer = !drawer"></v-btn>
+    <v-btn class="mr-4 bg-teal" icon="mdi-filter" @click.stop="drawer = !drawer"></v-btn>
     <v-btn class="mr-4 bg-surface-variant" @click="toggleTheme" icon="mdi-circle-slice-4"></v-btn>
   </v-sheet>
-  <v-main class="d-flex flex-wrap align-center justify-center pa-4">
-    <v-card v-for="info in store.infos" width="400px" height="250px" class="pa-4 mr-4 mb-4 rounded-xl" style="border: solid ">
-      <h2>{{ info.title }}</h2>
-      <p v-for="p in info.description">{{ p }}</p>
-    </v-card>
+  <v-main class="h-100 pa-4 bg-surface">
+    <v-sheet class="d-flex flex-wrap align-center justify-center">
+      <v-card v-for="info in store.infos" width="400px" height="250px" class="pa-4 mr-4 mb-4 rounded-xl  "
+        style="border: solid ">
+        <h2>{{ info.title }}</h2>
+        <p v-for="p in info.description">{{ p }}</p>
+      </v-card>
+    </v-sheet>
   </v-main>
   <v-snackbar v-model="store.success_snackbar" timeout="1500">查找成功，找到{{ store.infos.length }}个结果</v-snackbar>
   <v-snackbar v-model="store.fail_snackbar" timeout="1500">查找失败</v-snackbar>

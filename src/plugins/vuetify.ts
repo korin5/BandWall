@@ -16,6 +16,6 @@ import { createVuetify } from 'vuetify'
 export default createVuetify({
   // blueprint: md3,
   theme: {
-    defaultTheme: 'dark'
+    defaultTheme: 'light'
   }
 })

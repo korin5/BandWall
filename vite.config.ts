@@ -41,10 +41,10 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 3000,      	//vite的默认端口
-    open: true,	
+    open: false,	
     proxy: {
       "/api": {			//代理的请求
-        target: "http://localhost:8000",	//后端的地址
+        target: "http://127.0.0.1:8000",	//后端的地址
         changeOrigin: true,					//开启跨域访问
         rewrite: (path) => path.replace(/^\/api/,''),	//重写前缀（如果接口本身就有api这个通用前缀，那么就不用重写）
       },
