@@ -8,7 +8,7 @@
   </v-sheet>
   <v-main class="h-100 pa-4 bg-surface">
     <v-sheet class="d-flex flex-wrap align-center justify-center">
-      <v-card v-for="info in store.infos" width="400px" height="250px" class="pa-4 mr-4 mb-4 rounded-xl  "
+      <v-card v-for="info in store.infos" width="400px" height="250px" class="pa-4 mr-4 mb-4 rounded-xl elevation-6 "
         style="border: solid ">
         <h2>{{ info.title }}</h2>
         <p v-for="p in info.description">{{ p }}</p>
