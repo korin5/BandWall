@@ -26,7 +26,7 @@ import { ref, watch, Ref, computed } from 'vue'
 import { useInfosStore } from '@/plugins/store'
 import axios from 'axios';
 
-axios.defaults.baseURL ='/api';
+axios.defaults.baseURL = '/api';
 const store = useInfosStore()
 const loading = ref(false)
 
@@ -35,26 +35,34 @@ const Citys: any = store.Citys
 const Districts: any = store.Districts
 const Insts: any = store.Insts
 
-const Type_select:Ref<string> = ref("线下")
-const Province_select:Ref<string> = ref("上海市")
-const City_select:Ref<string> = ref("上海市")
-const District_select:Ref<string> = ref("不限")
-const Inst_select:Ref<string[]> = ref([])
+const Type_select: Ref<string> = ref("线下")
+const Province_select: Ref<string> = ref("上海市")
+const City_select: Ref<string> = ref("上海市")
+const District_select: Ref<string> = ref("不限")
+const Inst_select: Ref<string[]> = ref([])
 
 async function submit() {
   loading.value = true
   // setTimeout(() => (loading.value = false), 2000)
-  if(Inst_select.value.length == 0 || !District_select.value || !City_select.value || !Province_select.value || !Type_select.value){
-    store.filterfail_snackbar = true
-    loading.value = false
-    return
+  if (Type_select.value == "线下") {
+    if (Inst_select.value.length == 0 || !District_select.value || !City_select.value || !Province_select.value) {
+      store.filterfail_snackbar = true
+      loading.value = false
+      return
+    }
+  } else if (Type_select.value == "线上") {
+    if (Inst_select.value.length == 0) {
+      store.filterfail_snackbar = true
+      loading.value = false
+      return
+    }
   }
   await axios.post('bandinfos', {
-      type : Type_select.value,
-      province : Province_select.value,
-      city : City_select.value,
-      district : District_select.value,
-      insts : Inst_select.value
+    type: Type_select.value,
+    province: Province_select.value,
+    city: City_select.value,
+    district: District_select.value,
+    insts: Inst_select.value
   })
     .then(function (response: any) {
       store.infos = response.data
@@ -79,7 +87,7 @@ watch(City_select, async () => {
   District_select.value = ""
 })
 watch(Type_select, async () => {
-  if(Type_select.value=="线上"){
+  if (Type_select.value == "线上") {
     Province_select.value = ""
     City_select.value = ""
     District_select.value = ""
