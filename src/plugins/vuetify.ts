@@ -12,10 +12,18 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 // import { md3 } from 'vuetify/blueprints'
 
+const isDarkTheme = window.matchMedia("(prefers-color-scheme: dark)"); // 是深色
+
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
-export default createVuetify({
+const vuetify =  createVuetify({
   // blueprint: md3,
   theme: {
-    defaultTheme: 'light'
+    defaultTheme: isDarkTheme.matches ? 'dark' : 'light'
   }
 })
+
+isDarkTheme.addEventListener('change', (e) => {
+  vuetify.theme.global.name.value = e.matches ? 'dark' : 'light'
+})
+
+export default vuetify
