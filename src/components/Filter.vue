@@ -1,23 +1,31 @@
 <template>
+  <h1 class="text-center">筛选</h1>
+
   <h3>类型</h3>
   <v-chip-group v-model=Type_select mandatory filter>
-    <v-chip variant="outlined" value="线上">线上</v-chip>
-    <v-chip variant="outlined" value="线下">线下</v-chip>
+    <v-chip color="teal" value="线上">线上</v-chip>
+    <v-chip color="teal" value="线下">线下</v-chip>
   </v-chip-group>
 
   <h3 class="mt-4" v-show=show_local>地址</h3>
-  <v-combobox v-show=show_local label="省" density="comfortable" :items=Provinces v-model=Province_select></v-combobox>
-  <v-combobox v-show=show_local label="市" density="comfortable" :items=Citys[Province_select]
-    v-model=City_select></v-combobox>
-  <v-combobox v-show=show_local label="区" density="comfortable" :items=Districts[City_select]
-    v-model=District_select></v-combobox>
+  <v-sheet v-show=show_local class="mt-2 d-flex flex-row">
+    <v-combobox v-show=show_local label="省" density="comfortable" variant="underlined" :items=Provinces
+      v-model=Province_select></v-combobox>
+    <v-combobox v-show=show_local label="市" density="comfortable" variant="underlined" :items=Citys[Province_select]
+      v-model=City_select></v-combobox>
+    <v-combobox v-show=show_local label="区" density="comfortable" variant="underlined" :items=Districts[City_select]
+      v-model=District_select></v-combobox>
+  </v-sheet>
 
   <h3 class="mt-4">招募</h3>
   <v-chip-group v-model=Inst_select multiple filter>
-    <v-chip variant="outlined" v-for="inst in Insts" :key="inst" :value="inst">{{ inst }}</v-chip>
+    <v-chip color="teal" v-for="inst in Insts" :key="inst" :value="inst">{{ inst }}</v-chip>
   </v-chip-group>
 
-  <v-btn class="mt-4 bg-teal" block rounded="xl" @click="submit" :loading="loading">查找</v-btn>
+  <v-sheet class="d-flex flex-row">
+    <v-btn class="mt-4 bg-surface flex-1-0" rounded="xl" @click="store.show_filter = false">取消</v-btn>
+    <v-btn color="teal" class="mt-4 ml-4 flex-1-0" rounded="xl" @click="submit" :loading="loading">查找</v-btn>
+  </v-sheet>
 </template>
 
 
@@ -74,6 +82,7 @@ async function submit() {
     })
     .finally(function () {
       loading.value = false
+      store.show_filter = false
     })
 }
 

@@ -17,7 +17,9 @@ export const useInfosStore = defineStore('infos', () => {
     const success_snackbar = ref()
     const fail_snackbar = ref()
     const filterfail_snackbar = ref()
+    const show_nav = ref()
+    const show_filter = ref(false)
 
-    return {infos,Provinces,Citys,Districts,Insts,success_snackbar,fail_snackbar,filterfail_snackbar}
+    return {infos,Provinces,Citys,Districts,Insts,success_snackbar,fail_snackbar,filterfail_snackbar,show_nav,show_filter}
 
 })
