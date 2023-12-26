@@ -2,23 +2,23 @@
   <h1 class="text-center">筛选</h1>
 
   <h3>类型</h3>
-  <v-chip-group v-model=Type_select mandatory filter>
+  <v-chip-group variant="outlined" v-model=Type_select mandatory filter>
     <v-chip color="teal" value="线上">线上</v-chip>
     <v-chip color="teal" value="线下">线下</v-chip>
   </v-chip-group>
 
   <h3 class="mt-4" v-show=show_local>地址</h3>
   <v-sheet v-show=show_local class="mt-2 d-flex flex-row">
-    <v-combobox v-show=show_local label="省" density="comfortable" variant="underlined" :items=Provinces
-      v-model=Province_select></v-combobox>
-    <v-combobox v-show=show_local label="市" density="comfortable" variant="underlined" :items=Citys[Province_select]
-      v-model=City_select></v-combobox>
-    <v-combobox v-show=show_local label="区" density="comfortable" variant="underlined" :items=Districts[City_select]
-      v-model=District_select></v-combobox>
+    <v-select v-show=show_local label="省" variant="underlined" :items=Provinces
+      v-model=Province_select></v-select>
+    <v-select v-show=show_local label="市" variant="underlined" :items=Citys[Province_select]
+      v-model=City_select></v-select>
+    <v-select v-show=show_local label="区" variant="underlined" :items=Districts[City_select]
+      v-model=District_select></v-select>
   </v-sheet>
 
   <h3 class="mt-4">招募</h3>
-  <v-chip-group v-model=Inst_select multiple filter>
+  <v-chip-group variant="outlined" v-model=Inst_select multiple filter>
     <v-chip color="teal" v-for="inst in Insts" :key="inst" :value="inst">{{ inst }}</v-chip>
   </v-chip-group>
 
