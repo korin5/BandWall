@@ -22,8 +22,8 @@ const vuetify =  createVuetify({
   }
 })
 
-isDarkTheme.addEventListener('change', (e) => {
-  vuetify.theme.global.name.value = e.matches ? 'dark' : 'light'
-})
+// isDarkTheme.addEventListener('change', (e) => {
+//   vuetify.theme.global.name.value = e.matches ? 'dark' : 'light'
+// })
 
 export default vuetify
