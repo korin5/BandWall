@@ -23,7 +23,7 @@
   </v-chip-group>
 
   <v-sheet class="d-flex flex-row">
-    <v-btn variant="outlined" class="mt-4 bg-surface flex-1-0" rounded="xl" @click="store.show_filter = false">取消</v-btn>
+    <v-btn  variant="tonal" class="mt-4 bg-surface flex-1-0" rounded="xl" @click="store.show_filter = false">取消</v-btn>
     <v-btn color="teal" class="mt-4 ml-4 flex-1-0" rounded="xl" @click="submit" :loading="loading">查找</v-btn>
   </v-sheet>
 </template>
