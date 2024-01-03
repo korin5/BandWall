@@ -18,7 +18,7 @@ export const useInfosStore = defineStore('infos', () => {
     const snackbar_text = ref('')
     const show_nav = ref()
     const show_filter = ref(false)
-    const select_info = ref([])
+    const select_info:Ref<string[]> = ref([])
 
     return {infos,Provinces,Citys,Districts,Insts,show_snackbar,snackbar_text,show_nav,show_filter,select_info}
 
