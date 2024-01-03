@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref,Ref } from 'vue'
 
 export const useInfosStore = defineStore('infos', () => {
     const infos = ref()
@@ -18,7 +18,8 @@ export const useInfosStore = defineStore('infos', () => {
     const snackbar_text = ref('')
     const show_nav = ref()
     const show_filter = ref(false)
+    const select_info = ref([])
 
-    return {infos,Provinces,Citys,Districts,Insts,show_snackbar,snackbar_text,show_nav,show_filter}
+    return {infos,Provinces,Citys,Districts,Insts,show_snackbar,snackbar_text,show_nav,show_filter,select_info}
 
 })

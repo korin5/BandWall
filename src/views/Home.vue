@@ -6,6 +6,9 @@
         <Filter />
       </v-card>
     </v-dialog>
+    
+      <v-chip class="mr-2" v-for="info in store.select_info">{{ info }}</v-chip>
+
     <v-sheet class="d-flex flex-wrap align-start justify-center">
       <v-sheet v-for="info in store.infos" width="500px" height="300px"
         class=" mr-4 mb-4 elevation-6 rounded-xl overflow-hidden">

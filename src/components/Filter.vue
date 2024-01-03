@@ -9,8 +9,7 @@
 
   <h3 class="mt-4" v-show=show_local>地址</h3>
   <v-sheet v-show=show_local class="mt-2 d-flex flex-row">
-    <v-select v-show=show_local label="省" variant="underlined" :items=Provinces
-      v-model=Province_select></v-select>
+    <v-select v-show=show_local label="省" variant="underlined" :items=Provinces v-model=Province_select></v-select>
     <v-select v-show=show_local label="市" variant="underlined" :items=Citys[Province_select]
       v-model=City_select></v-select>
     <v-select v-show=show_local label="区" variant="underlined" :items=Districts[City_select]
@@ -23,7 +22,7 @@
   </v-chip-group>
 
   <v-sheet class="d-flex flex-row">
-    <v-btn  variant="tonal" class="mt-4 bg-surface flex-1-0" rounded="xl" @click="store.show_filter = false">取消</v-btn>
+    <v-btn variant="tonal" class="mt-4 bg-surface flex-1-0" rounded="xl" @click="store.show_filter = false">取消</v-btn>
     <v-btn color="teal" class="mt-4 ml-4 flex-1-0" rounded="xl" @click="submit" :loading="loading">查找</v-btn>
   </v-sheet>
 </template>
@@ -76,7 +75,7 @@ async function submit() {
   })
     .then(function (response: any) {
       store.infos = response.data
-      store.snackbar_text = '查找成功，找到'+ store.infos.length + '个结果'
+      store.snackbar_text = '查找成功，找到' + store.infos.length + '个结果'
       store.show_snackbar = true
     })
     .catch(function (error: any) {
@@ -87,7 +86,21 @@ async function submit() {
     .finally(function () {
       loading.value = false
       store.show_filter = false
+      set_select_info()
     })
+}
+
+function set_select_info() {
+  store.select_info = new Array()
+  store.select_info[0] = Type_select.value
+  if(Type_select.value=="线下"){
+    store.select_info[1] = Province_select.value
+    store.select_info[2] = City_select.value
+    store.select_info[3] = District_select.value
+  }
+  for(let i in Inst_select.value){
+    store.select_info.push(Inst_select.value[i])
+  }
 }
 
 const show_local = computed(() => {
