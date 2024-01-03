@@ -14,12 +14,11 @@ export const useInfosStore = defineStore('infos', () => {
         "暂未开放": ["暂未开放"],
     })
     const Insts = ref(['电吉他','电贝斯','键盘', '架子鼓','木吉他'])
-    const success_snackbar = ref()
-    const fail_snackbar = ref()
-    const filterfail_snackbar = ref()
+    const show_snackbar = ref()
+    const snackbar_text = ref('')
     const show_nav = ref()
     const show_filter = ref(false)
 
-    return {infos,Provinces,Citys,Districts,Insts,success_snackbar,fail_snackbar,filterfail_snackbar,show_nav,show_filter}
+    return {infos,Provinces,Citys,Districts,Insts,show_snackbar,snackbar_text,show_nav,show_filter}
 
 })

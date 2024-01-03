@@ -54,13 +54,15 @@ async function submit() {
   // setTimeout(() => (loading.value = false), 2000)
   if (Type_select.value == "线下") {
     if (Inst_select.value.length == 0 || !District_select.value || !City_select.value || !Province_select.value) {
-      store.filterfail_snackbar = true
+      store.snackbar_text = '请完善筛选信息'
+      store.show_snackbar = true
       loading.value = false
       return
     }
   } else if (Type_select.value == "线上") {
     if (Inst_select.value.length == 0) {
-      store.filterfail_snackbar = true
+      store.snackbar_text = '请完善筛选信息'
+      store.show_snackbar = true
       loading.value = false
       return
     }
@@ -74,10 +76,12 @@ async function submit() {
   })
     .then(function (response: any) {
       store.infos = response.data
-      store.success_snackbar = true
+      store.snackbar_text = '查找成功，找到'+ store.infos.length + '个结果'
+      store.show_snackbar = true
     })
     .catch(function (error: any) {
-      store.fail_snackbar = true
+      store.snackbar_text = '查找失败'
+      store.show_snackbar = true
       console.log(error);
     })
     .finally(function () {

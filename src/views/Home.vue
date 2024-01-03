@@ -16,9 +16,6 @@
       </v-sheet>
     </v-sheet>
   </v-main>
-  <v-snackbar v-model="store.success_snackbar" timeout="1500">查找成功，找到{{ store.infos.length }}个结果</v-snackbar>
-  <v-snackbar v-model="store.fail_snackbar" timeout="1500">查找失败</v-snackbar>
-  <v-snackbar v-model="store.filterfail_snackbar" timeout="1500">请完善筛选信息</v-snackbar>
 </template>
 
 <script lang="ts" setup>
