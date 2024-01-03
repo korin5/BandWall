@@ -77,27 +77,27 @@ async function submit() {
             return
         }
     }
-    // await axios.post('upload', {
-    //     type: Type_select.value,
-    //     province: Province_select.value,
-    //     city: City_select.value,
-    //     district: District_select.value,
-    //     insts: Inst_select.value
-    // })
-    //     .then(function (response: any) {
-    //         store.infos = response.data
-    //         store.snackbar_text = ''
-    //         store.show_snackbar = true
-    //     })
-    //     .catch(function (error: any) {
-    //         store.snackbar_text = ''
-    //         store.show_snackbar = true
-    //         console.log(error);
-    //     })
-    //     .finally(function () {
-    //         loading.value = false
-    //         store.show_filter = false
-    //     })
+    await axios.post('upload', {
+        type: type_select.value,
+        province: province_select.value,
+        city: city_select.value,
+        district: district_select.value,
+        insts: inst_select.value,
+        title: title.value,
+        description: description.value
+    })
+        .then(function (response: any) {
+            store.snackbar_text = '已上传'
+            store.show_snackbar = true
+        })
+        .catch(function (error: any) {
+            store.snackbar_text = '上传失败'
+            store.show_snackbar = true
+            console.log(error);
+        })
+        .finally(function () {
+            loading.value = false
+        })
 }
 
 const show_local = computed(() => {
