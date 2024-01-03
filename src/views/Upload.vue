@@ -4,7 +4,7 @@
             <h1 class="text-center">上传</h1>
 
             <h3>类型</h3>
-            <v-chip-group variant="outlined" v-model=Type_select mandatory filter>
+            <v-chip-group variant="outlined" v-model=type_select mandatory filter>
                 <v-chip color="teal" value="线上">线上</v-chip>
                 <v-chip color="teal" value="线下">线下</v-chip>
             </v-chip-group>
@@ -12,15 +12,15 @@
             <h3 class="mt-4" v-show=show_local>地址</h3>
             <v-sheet v-show=show_local class="mt-2 d-flex flex-row">
                 <v-select v-show=show_local label="省" variant="underlined" :items=Provinces
-                    v-model=Province_select></v-select>
-                <v-select v-show=show_local label="市" variant="underlined" :items=Citys[Province_select]
-                    v-model=City_select></v-select>
-                <v-select v-show=show_local label="区" variant="underlined" :items=Districts[City_select]
-                    v-model=District_select></v-select>
+                    v-model=province_select></v-select>
+                <v-select v-show=show_local label="市" variant="underlined" :items=Citys[province_select]
+                    v-model=city_select></v-select>
+                <v-select v-show=show_local label="区" variant="underlined" :items=Districts[city_select]
+                    v-model=district_select></v-select>
             </v-sheet>
 
             <h3 class="mt-4">招募</h3>
-            <v-chip-group variant="outlined" v-model=Inst_select multiple filter>
+            <v-chip-group variant="outlined" v-model=inst_select multiple filter>
                 <v-chip color="teal" v-for="inst in Insts" :key="inst" :value="inst">{{ inst }}</v-chip>
             </v-chip-group>
 
@@ -50,11 +50,11 @@ const Citys: any = store.Citys
 const Districts: any = store.Districts
 const Insts: any = store.Insts
 
-const Type_select: Ref<string> = ref("线下")
-const Province_select: Ref<string> = ref("上海市")
-const City_select: Ref<string> = ref("上海市")
-const District_select: Ref<string> = ref("不限")
-const Inst_select: Ref<string[]> = ref([])
+const type_select: Ref<string> = ref("线下")
+const province_select: Ref<string> = ref("上海市")
+const city_select: Ref<string> = ref("上海市")
+const district_select: Ref<string> = ref("不限")
+const inst_select: Ref<string[]> = ref([])
 
 const title = ref()
 const description = ref()
@@ -62,15 +62,15 @@ const description = ref()
 async function submit() {
     loading.value = true
     // setTimeout(() => (loading.value = false), 2000)
-    if (Type_select.value == "线下") {
-        if (!description.value || !title.value || Inst_select.value.length == 0 || !District_select.value || !City_select.value || !Province_select.value) {
+    if (type_select.value == "线下") {
+        if (!description.value || !title.value || inst_select.value.length == 0 || !district_select.value || !city_select.value || !province_select.value) {
             store.snackbar_text = '请完善上传信息'
             store.show_snackbar = true
             loading.value = false
             return
         }
-    } else if (Type_select.value == "线上") {
-        if (!description.value || !title.value || Inst_select.value.length == 0) {
+    } else if (type_select.value == "线上") {
+        if (!description.value || !title.value || inst_select.value.length == 0) {
             store.snackbar_text = '请完善上传信息'
             store.show_snackbar = true
             loading.value = false
@@ -101,19 +101,19 @@ async function submit() {
 }
 
 const show_local = computed(() => {
-    return Type_select.value == '线下'
+    return type_select.value == '线下'
 })
-watch(Province_select, async () => {
-    City_select.value = ""
+watch(province_select, async () => {
+    city_select.value = ""
 })
-watch(City_select, async () => {
-    District_select.value = ""
+watch(city_select, async () => {
+    district_select.value = ""
 })
-watch(Type_select, async () => {
-    if (Type_select.value == "线上") {
-        Province_select.value = ""
-        City_select.value = ""
-        District_select.value = ""
+watch(type_select, async () => {
+    if (type_select.value == "线上") {
+        province_select.value = ""
+        city_select.value = ""
+        district_select.value = ""
     }
 })
 </script>
