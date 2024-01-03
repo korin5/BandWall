@@ -1,11 +1,6 @@
 <template>
   <v-main class="h-100 pa-4 bg-surface">
     <v-btn color="teal" class="mr-4 mb-4" icon="mdi-filter" @click.stop="store.show_filter = true"></v-btn>
-    <v-dialog v-model="store.show_filter" max-width="600px" class=" align-center">
-      <v-card v-show="store.show_filter" class="w-100 pa-4 mr-4 mb-4 rounded-xl elevation-6 ">
-        <Filter />
-      </v-card>
-    </v-dialog>
     
       <v-chip class="mr-2" v-for="info in store.select_info">{{ info }}</v-chip>
 
@@ -18,6 +13,12 @@
         </v-card>
       </v-sheet>
     </v-sheet>
+
+    <v-dialog v-model="store.show_filter" max-width="600px" class=" align-center">
+      <v-card v-show="store.show_filter" class="w-100 pa-4 mr-4 mb-4 rounded-xl elevation-6 ">
+        <Filter />
+      </v-card>
+    </v-dialog>
   </v-main>
 </template>
 
