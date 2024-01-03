@@ -1,8 +1,9 @@
 <template>
   <v-main class="h-100 pa-4 bg-surface">
-    <v-btn color="teal" class="mr-4 mb-4" icon="mdi-filter" @click.stop="store.show_filter = true"></v-btn>
-    
-      <v-chip class="mr-2" v-for="info in store.select_info">{{ info }}</v-chip>
+    <v-sheet class="mb-4">
+      <v-btn color="teal" class="mr-4" icon="mdi-filter" @click.stop="store.show_filter = true"></v-btn>
+      <v-chip class="mr-2 mt-2" v-for="info in store.select_info">{{ info }}</v-chip>
+    </v-sheet>
 
     <v-sheet class="d-flex flex-wrap align-start justify-center">
       <v-sheet v-for="info in store.infos" width="500px" height="300px"
